@@ -1,0 +1,83 @@
+Soft leaks means the object in heap has reference and no longer to be used.
+
+Soft leaks can be occurred if we use the third party libraries.
+
+-Xms=256m --> Starting heap size is 256MB
+-Xmx=1024m --> Maximum heap size set to 1024MB after that will get GC runtime error.
+
+To identify the memory used open C:\dev\softwares\jdk1.8.0_25\bin\jvisualvm.exe (Depend on which JDK is used)
+
+
+Before that set program arguments as like in A11SoftLeaks01PgmArg.JPG. Execute A11SoftLeaks.java and view in jvisualvm.
+
+On opening jvisualvm while executing takes place, there will be new entry com.java.memory.mgmt.a04gc.A11SoftLeaks.java in A11SoftLeaks02VisualVM.JPG
+
+Here after some executing there is a dip in the jvisualvm and the heap size keep decreasing as below in console and in jvisualvm. After sometime will get OutOfMemoryError.
+
+After the program stop execution the entry will be vanished from jvisualvm
+
+Fri May 01 18:54:29 IST 2020 : 107008
+Available memory: 7210k
+Fri May 01 18:54:34 IST 2020 : 133724
+Available memory: 5611k
+Fri May 01 18:54:39 IST 2020 : 157419
+Available memory: 3511k
+Exception in thread "Thread-8" java.lang.OutOfMemoryError: Java heap space
+	at java.util.Arrays.copyOf(Unknown Source)
+	at java.util.Arrays.copyOf(Unknown Source)
+	at java.util.ArrayList.grow(Unknown Source)
+	at java.util.ArrayList.ensureExplicitCapacity(Unknown Source)
+	at java.util.ArrayList.ensureCapacityInternal(Unknown Source)
+	at java.util.ArrayList.add(Unknown Source)
+	at com.java.memory.mgmt.a04gc.CustomerManager.addCustomer(A11SoftLeaks.java:74)
+	at com.java.memory.mgmt.a04gc.GenerateCustomerTask.run(A11SoftLeaks.java:54)
+	at java.lang.Thread.run(Unknown Source)
+Exception in thread "Thread-4" java.lang.OutOfMemoryError: Java heap space
+	at java.util.Arrays.copyOf(Unknown Source)
+	at java.util.ArrayList.grow(Unknown Source)
+	at java.util.ArrayList.ensureExplicitCapacity(Unknown Source)
+	at java.util.ArrayList.ensureCapacityInternal(Unknown Source)
+	at java.util.ArrayList.add(Unknown Source)
+	at com.java.memory.mgmt.a04gc.CustomerManager.addCustomer(A11SoftLeaks.java:74)
+	at com.java.memory.mgmt.a04gc.GenerateCustomerTask.run(A11SoftLeaks.java:54)
+	at java.lang.Thread.run(Unknown Source)
+Exception in thread "Thread-9" java.lang.OutOfMemoryError: Java heap space
+	at java.util.Arrays.copyOf(Unknown Source)
+	at java.util.ArrayList.grow(Unknown Source)
+	at java.util.ArrayList.ensureExplicitCapacity(Unknown Source)
+	at java.util.ArrayList.ensureCapacityInternal(Unknown Source)
+	at java.util.ArrayList.add(Unknown Source)
+	at com.java.memory.mgmt.a04gc.CustomerManager.addCustomer(A11SoftLeaks.java:74)
+	at com.java.memory.mgmt.a04gc.GenerateCustomerTask.run(A11SoftLeaks.java:54)
+	at java.lang.Thread.run(Unknown Source)
+Exception in thread "Thread-3" java.lang.OutOfMemoryError: Java heap space
+	at java.util.Arrays.copyOf(Unknown Source)
+	at java.util.Arrays.copyOf(Unknown Source)
+	at java.util.ArrayList.grow(Unknown Source)
+	at java.util.ArrayList.ensureExplicitCapacity(Unknown Source)
+	at java.util.ArrayList.ensureCapacityInternal(Unknown Source)
+	at java.util.ArrayList.add(Unknown Source)
+	at com.java.memory.mgmt.a04gc.CustomerManager.addCustomer(A11SoftLeaks.java:74)
+	at com.java.memory.mgmt.a04gc.GenerateCustomerTask.run(A11SoftLeaks.java:54)
+	at java.lang.Thread.run(Unknown Source)
+Exception in thread "Thread-2" Exception in thread "Thread-6" java.lang.OutOfMemoryError: Java heap space
+java.lang.OutOfMemoryError: Java heap space
+Exception in thread "Thread-5" java.lang.OutOfMemoryError: Java heap space
+Exception in thread "Thread-7" java.lang.OutOfMemoryError: Java heap space
+Exception in thread "Thread-1" java.lang.OutOfMemoryError: Java heap space
+Fri May 01 18:54:44 IST 2020 : 161510
+Available memory: 3073k
+Fri May 01 18:54:49 IST 2020 : 163836
+Available memory: 2930k
+Fri May 01 18:54:54 IST 2020 : 165832
+Available memory: 2825k
+Fri May 01 18:54:59 IST 2020 : 166246
+Available memory: 2770k
+Fri May 01 18:55:05 IST 2020 : 166296
+Available memory: 2765k
+Fri May 01 18:55:11 IST 2020 : 166345
+Available memory: 2700k
+Fri May 01 18:55:33 IST 2020 : 166449
+Available memory: 2704k
+Fri May 01 18:55:54 IST 2020 : 166550
+Available memory: 2701k

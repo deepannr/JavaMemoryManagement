@@ -9,8 +9,8 @@ public class A07ListReference {
 
 	public static void main(String[] args) {
 		CustomerRecords records = new CustomerRecords();
-		records.addCustomer(new Customer("Dee"));
-		records.addCustomer(new Customer("Pan"));
+		records.addCustomer(new CustomerImpl("Dee"));
+		records.addCustomer(new CustomerImpl("Pan"));
 
 		System.out.println("---Print Map---");
 		System.out.println(records.getCustomers());
@@ -29,6 +29,10 @@ public class A07ListReference {
 		for (Customer customer : records) {
 			System.out.println(customer);
 		}
+		
+		System.out.println("\n\n---Get Customer by name---");
+		Customer dee = records.getCustomerByName("Dee");
+		System.out.println(dee);
 	}
 }
 
@@ -53,19 +57,19 @@ public class A07ListReference {
 //	}
 //}
 
-class CustomerRecords implements Iterable<Customer> {
-	private Map<String, Customer> records;
+class CustomerRecords implements Iterable<CustomerImpl> {
+	private Map<String, CustomerImpl> records;
 
 	public CustomerRecords() {
 		this.records = new HashMap<>();
 	}
 
-	public void addCustomer(Customer cust) {
+	public void addCustomer(CustomerImpl cust) {
 		this.records.put(cust.getName(), cust);
 	}
 
-	public Map<String, Customer> getCustomers() {
-		return new HashMap<String, Customer>(this.records); // Here returns a new HashMap where on the constructor
+	public Map<String, CustomerImpl> getCustomers() {
+		return new HashMap<String, CustomerImpl>(this.records); // Here returns a new HashMap where on the constructor
 															// passed its value. Even this is also not
 
 		// return Collections.unmodifiableMap(this.records); // This is the perfect
@@ -79,17 +83,31 @@ class CustomerRecords implements Iterable<Customer> {
 	}
 
 	@Override
-	public Iterator<Customer> iterator() {
+	public Iterator<CustomerImpl> iterator() {
 		return records.values().iterator();
 	}
-
+	
+	public CustomerImpl getCustomerByName(String name) {
+		return new CustomerImpl(this.records.get(name));
+	}
 }
 
-class Customer {
+interface Customer {
+	String getName();
+	
+	String toString();
+}
+
+class CustomerImpl implements Customer {
 	private String name;
 
-	public Customer(String name) {
+	public CustomerImpl(String name) {
 		this.name = name;
+	}
+	
+	// Here customer object is passed as a reference of 
+	public CustomerImpl(CustomerImpl oldCustomer) {
+		this.name = oldCustomer.getName();
 	}
 
 	public void setName(String name) {
@@ -99,6 +117,7 @@ class Customer {
 	public String getName() {
 		return name;
 	}
+	
 
 	@Override
 	public String toString() {

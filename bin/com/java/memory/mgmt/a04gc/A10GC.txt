@@ -1,0 +1,25 @@
+In C, when the memory to be cleaned then need to use .free()
+In VB when the memory to be cleaned then the variables to be assigned to NULL.
+
+If not even when the program ends, the objects will be stored in the memory of OS and ultimately will happen memory leak and crash.
+To overcome this need to restart the OS.
+
+No need if those C or VB running on the web server.
+
+This is not the case of Java. As Java running on a Virtual Machine. When a variable is assigned then it is not stored to the OS memory where as it is stored in the VM's memory.
+
+Java Memory leaks can be avoided by
+1. Running on VM
+2. Garbage Collection
+
+GC is implemented in 1959 in LISP programming language and Java used that concept and made popular on GC.
+
+When the programmers keep create the variables on heap, then a separate process will be running which works on the objects which are no longer used and they are cleared.
+
+Rule: Any object from the heap which is not referenced through the stack is eligible for garbage collected. Here is unreachable object but not unreferenced objects
+
+In A10GC02.JPG even though if Customer A and Customer B object has reference as the list don't have any reference from Stack all 3 objects are eligible for GC.
+
+In A10GC03CircularRefr.JPG Obj A, B, C are referenced to each other (Circular Reference) and there is no reference from the stack all 3 objects are eligible for GC.
+
+The whole process is apart from the programmer.
