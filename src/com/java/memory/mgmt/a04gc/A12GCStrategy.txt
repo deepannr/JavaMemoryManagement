@@ -1,0 +1,28 @@
+GC uses Mark and Sweep
+First all the unreferenced objects are marked and will sweep the objects. 
+After that all the referenced objects are de-fragmented for minimize the timing.
+
+Most objects are long live in GC.
+Heap has 2 separations young and old generation. Young has smaller size than old generation.
+Young generation can be tuned.  GC takes place on Young generation only. GC happens in old G only when needed.
+Newer objects are filled in young generation Heap and young generation objects will not survive for long.
+ 
+Old surviving objects are moved to old generation.
+
+On viewing eclipse in jvisualvm.exe, when pressing perform GC then the memory used by eclipse will be reduced 
+as in A12GCStrategy03.JPG
+
+Check the site to configure visual vm https://visualvm.github.io/pluginscenters.html
+and see A12GCStrategy04.JPG for young and old generations.
+
+Young generation is separated to 3,
+ 1. Eden
+ 2. Survivor 0
+ 3. Survivor 1
+ As the objects will move 1 - 3
+ 
+ When the project is cleaned, GC will happen.
+ 
+ When 30MB is allocated to A11SoftLeaks.java through program arguments then 20MB allocated to Old generation 
+ and remaining space added to young generation like in A12GCStrategy05.JPG
+ 

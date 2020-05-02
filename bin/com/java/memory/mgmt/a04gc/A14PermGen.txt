@@ -1,0 +1,4 @@
+Here in heap, perm gen is the space where it will not be garbage collected.
+In JDK 1.7, internal strings are not stored in perm gen space. (A14PermGen01.JPG)
+In Jdk 1.8, perm gen space is ultimately removed and added as meta data space. (A14PermGen_Metadata01.JPG)
+Here meta space is completely outside of heap space. Whenever the application is deployed then the meta data grows.

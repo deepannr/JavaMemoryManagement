@@ -1,0 +1,9 @@
+To analyze the object memory leaks take heap dump of the class and with the help of memory analyzer proceed
+
+To download MAT, https://www.eclipse.org/mat/downloads.php
+
+In our case take heap dump of A11SoftLeaks.java and save to some location and using MAT analyze that.
+On selecting the hdump file in MAT, in the next dialog select Leaks Suspect Report.
+Then leaks will be shown as like A13MemoryAnalyzer01.jpg
+
+Like A13MemoryAnalyzer02.jpg, the highlighted line is object

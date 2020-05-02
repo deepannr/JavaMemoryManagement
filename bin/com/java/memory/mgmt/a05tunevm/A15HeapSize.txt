@@ -1,0 +1,42 @@
+-Xmx Maximum heap size
+-Xms starting heap size
+Both can be notated as k, m, g
+
+-Xmx512m -Xms150m
+-Xmx51g -Xms15g
+
+Present only till java 7.
+-XX:MaxPermSize=256m
+
+-verbose:gc - print in the console if GC happened.
+
+While running A15HeapSize.java, set the program arguments as -Xmx10m -verbose:gc
+Then will print when GC happens 
+[GC (Allocation Failure)  3024K->944K(9728K), 0.0006230 secs]
+[GC (Allocation Failure)  2992K->912K(9728K), 0.0009832 secs]
+[GC (Allocation Failure)  2960K->912K(9728K), 0.0005407 secs]
+[GC (Allocation Failure)  2960K->976K(9728K), 0.0003414 secs]
+[GC (Allocation Failure)  3024K->976K(9728K), 0.0005402 secs]
+
+
+Need to alter the young generation on tuning JVM. By defauly young generation is 33% of total heap size and 
+66% of total heap size is old generation. To set Young generation
+-Xmn Set size of young generation. --> -Xmn256m. So initial and max heap size should be greater than this.
+
+If the application crashes then create a heap dump
+-XX:HeapDumpOnOutOfMemory This auto create dump file if out of memory occurs
+
+
+Types of GC:
+1. Serial - Perform single thread for GC -XX:+UseSerialGC
+2. Parallel - Perform GC in young generation in parallel on multiple threads -XX:UseParallelGC
+3. Mostly Concurrent - perform most of work concurrently. Application will not pause when GC happen but this
+is not that much possible as application should pause when mark and sweep performs.
+	-XX:+UseConcMarkSweepGC
+	-XX:+UseG1GC
+	
+GC will be default selected based on the hardware to know that we can use 
+java -XX:+PrintCommandLineFlags in command prompt
+
+C:\Users\ab75812>java -XX:+PrintCommandLineFlags
+-XX:InitialHeapSize=132261056 -XX:MaxHeapSize=2116176896 -XX:+PrintCommandLineFlags -XX:+UseCompressedClassPointers -XX:+UseCompressedOops -XX:-UseLargePagesIndividualAllocation -XX:+UseParallelGC
