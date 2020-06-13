@@ -1,0 +1,11 @@
+In Java it is possible to create Weak and Soft references like A17WeakAndSoftRefr01.JPG
+
+Weak Reference - Will not survive on GC. If object is declared as weak, although the reference is there in
+	Stack then the object will be GC in heap. If not then the var3 will be null.
+
+Soft Reference - If the space is needed in heap then only it will be destroyed. Stronger than Weak.
+A17WeakAndSoftRefr02.JPG - Create weak and soft reference
+
+A17WeakAndSoftRefr03.JPG weak hash map
+
+https://github.com/google/guava

@@ -1,0 +1,24 @@
+Open jmeter by clicling bin/ApacheJMeter.jar
+In the jmeter, right click Test Plan >> Add >> Thread >> Thread Group and this shows only one thread is running. 
+In Thread Group >> Add >> Config Element >> Http Cookie Manager
+
+In Thread Group >> Add >> Sampler >> Http Request Sampler
+In the Http Request Sampler, select the method to post and 
+url as http://localhost:8080/mywebapp/addNewTutor.html as we want to analyze webapp
+Also Add parameters as like A16MonitorAppln01.jpg 
+
+Test Plan >> Listener >> View Result in a Table and execute and create a new entry
+
+Now in the Thread Group
+No of Threads to 200
+Select Loop count as like A16MonitorAppln02.JPG and run
+Go to View Results in Table like in A16MonitorAppln03.JPG
+
+Open Java Visual VM and view Visual GC and here old generation space is filled and GC is not happened like A16MonitorAppln04.JPG
+	and even after perform GC also the space is not managed.
+	
+Take heap dump and check in Memory Analyzer there are 3 problem suspects in A16MonitorAppln05.JPG
+
+A16MonitorAppln06.JPG On analyzing the problem, UUID has leak
+A16MonitorAppln07.JPG has leak
+A16MonitorAppln08.JPG can be replaced to avoid leak
