@@ -28,7 +28,7 @@ class A06Excercise {
 		System.out.println(newInitial); // newInitial = Z
 	}
 }
-
+		// Output A Z B
 class Container {
 	private String initial = "A";
 

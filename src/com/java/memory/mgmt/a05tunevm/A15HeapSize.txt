@@ -19,7 +19,7 @@ Then will print when GC happens
 [GC (Allocation Failure)  3024K->976K(9728K), 0.0005402 secs]
 
 
-Need to alter the young generation on tuning JVM. By defauly young generation is 33% of total heap size and 
+Need to alter the young generation on tuning JVM. By default young generation is 33% of total heap size and 
 66% of total heap size is old generation. To set Young generation
 -Xmn Set size of young generation. --> -Xmn256m. So initial and max heap size should be greater than this.
 

@@ -14,6 +14,6 @@ class A02LocalVariable {
 }
 
 /*
- * Here all are storing in the stack and they are primitive at line 8, the value remains 5 only.
- * 
+ * Here all are storing in the stack and they are 
+ * primitive at line 8, the value remains 5 only.
  */
